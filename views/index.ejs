@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
+      integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style__main.css" type="text/css" />
+    <link rel="stylesheet" href="/css/style__navbar.css" type="text/css" />
+    <title>WebBoard</title>
+  </head>
+  <body>
+    <%- include ("./layout/navbar") %>
+    <section id="home">
+      <div class="boards">
+        <div class="board__group">
+          <div class="board1">
+            <a href="/board?mid=bulletin&page=1" class="board__name"
+              >자유 게시판
+            </a>
+          </div>
+          <%if(post.length != 0){%>
+            <ul>
+              <%for(let i=0;i<post.length;i++){%>
+                <% if(i == 15){break;} %>
+                <li>
+                  <a
+                    class="table__content"
+                    href="/board/bulletinboard/<%=post[i].id%>?page=1"
+                    ><%= post[i].title %>
+                  </a>
+                </li>
+              <%}%>
+            </ul>
+          <%}%>
+        </div>
+        <div class="board__group">
+          <div class="board1">
+            <a href="" class="board__name">게시판 이름</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer id="footer">
+      <div class="copyright">Copyright (c) All Right Reserved.</div>
+    </footer>
+  </body>
+</html>

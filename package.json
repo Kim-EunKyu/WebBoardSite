@@ -1,0 +1,38 @@
+{
+  "name": "webboardproject",
+  "version": "1.0.0",
+  "description": "making webboard project example",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kim-EunKyu/WebBoardProject.git"
+  },
+  "author": "kek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kim-EunKyu/WebBoardProject/issues"
+  },
+  "homepage": "https://github.com/Kim-EunKyu/WebBoardProject#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ckeditor4": "^4.15.0",
+    "connect-flash": "^0.1.1",
+    "connect-multiparty": "^2.2.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "fs": "0.0.1-security",
+    "helmet": "^4.1.1",
+    "lodash": "^4.17.19",
+    "mysql2": "^2.1.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "sequelize": "^6.3.0",
+    "sequelize-cli": "^6.2.0",
+    "uuidv4": "^6.2.4"
+  }
+}

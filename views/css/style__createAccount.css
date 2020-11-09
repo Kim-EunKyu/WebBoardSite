@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  background-color: lightgray;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+#home {
+  max-width: 960px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+}
+
+.create__account {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  align-items: center;
+  width: 100%;
+}
+
+.row i {
+}
+
+.column {
+  width: 400px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 8px;
+  padding: 8px;
+}
+
+@media screen and (max-width: 1050px) {
+  #home {
+    max-width: 1050px;
+    margin: 0;
+  }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
+      integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style__boarddelete.css" type="text/css" />
+    <link rel="stylesheet" href="/css/style__navbar.css" type="text/css" />
+    <title>WebBoard</title>
+  </head>
+  <body>
+    <%- include ("./layout/navbar") %>
+    <section id="home">
+      <div>
+        <div class="top">이 게시글을 삭제하시겠습니까?</div>
+        <div class="bottom">
+          <a
+            href="/board/boarddelete?kindofboard=<%=kindofboard%>&postid=<%=postid%>"
+            class="yes"
+            >예</a
+          >
+          <a href="" class="no">취소</a>
+        </div>
+      </div>
+    </section>
+    <footer id="footer">
+      <div class="copyright">Copyright (c) All Right Reserved.</div>
+    </footer>
+  </body>
+</html>

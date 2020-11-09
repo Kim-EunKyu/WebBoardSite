@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  background-color: lightgray;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+#home {
+  max-width: 960px;
+  margin: auto;
+}
+
+.login__form {
+  display: flex;
+  justify-content: center;
+}
+
+.login__form fieldset {
+  margin-top: 50px;
+  display: flex;
+  background-color: white;
+  width: 20%;
+}
+
+.login__id,
+.login__pw {
+  padding: 8px;
+}
+
+.login__submit {
+  width: 100%;
+}
+
+@media screen and (max-width: 1050px) {
+  #home {
+    max-width: 1050px;
+    margin: 0;
+  }
+  .boards {
+    flex-direction: column;
+  }
+}

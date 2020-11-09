@@ -1,0 +1,31 @@
+<nav id="navbar">
+  <div class="navbar__left">
+    <div class="navbar__title">
+      <a href="/">Site</a>
+    </div>
+    <ul class="navbar__menu">
+      <li class="menu__btn">
+        <a href="/board?mid=bulletin&page=1" class="menu">자유 게시판 </a>
+      </li>
+      <li class="menu__btn">메뉴2</li>
+      <li class="menu__btn">메뉴3</li>
+      <li class="menu__btn">메뉴4</li>
+      <li class="menu__btn">메뉴5</li>
+      <%if(user){%>
+      <li>userID : <%=user.userid %></li>
+      <%}%>
+    </ul>
+  </div>
+  <div class="navbar__right">
+    <%if(!user){%>
+    <a href="/user/createAccount" class="create-account">
+      <div class="">회원가입</div></a
+    >
+    <a href="/user/login" class="login"> <div class="">로그인</div></a>
+    <%}else{%>
+    <a href="/user/logout" class="create-account">
+      <div class="">로그아웃</div></a
+    >
+    <%}%>
+  </div>
+</nav>

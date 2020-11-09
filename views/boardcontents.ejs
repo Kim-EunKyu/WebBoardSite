@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
+      integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/style__boardcontents.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/css/style__navbar.css" type="text/css" />
+    
+    <title>WebBoard</title>
+  </head>
+  <body>
+    <%- include ("./layout/navbar") %>
+    <!-- 본문 내용 -->
+    <section id="home">
+      <div class="board__name">
+        <a href="/board?mid=<%=kindofboard%>&page=1"><%=boardname%></a>
+      </div>
+      <div class="board__content">
+        <div class="post__title">
+          <%=postOne.title%>
+        </div>
+        <div class="post__author">
+          <div class="author__left"><%=postOne.userid%></div>
+          <%if(user && user.userid === postOne.userid){%>
+            <a href="/boardwrite?mid=<%=kindofboard%>&mod=1" class="author__right">수정</a>
+            <a href="/boarddelete?kindofboard=<%=kindofboard%>&postid=<%=post.id%>" class="author__right">삭제</a>
+          <%}%>
+        </div>
+        <div class="post__content">
+          <%-postOne.contents%>
+        </div>
+        <div class="post__thumbs"></div>
+      </div>
+       <div class="comments">
+         <div class="comments__number"><%=comments.length%>개의 댓글</div>
+        <%if(comments){%> 
+          <%for(let i = 0; i<comments.length; i++){%>
+            <div class="comment__head">
+              <div class="userid"><%=comments[i].userid%></div>
+              <div class="date"></div>
+            </div>
+            <div class="comment__body"><%=comments[i].contents%></div>
+          <%}%>
+          <%}%> 
+       </div>
+      <%if(user){%>
+      <div class="comment__write">
+        <form action="/user/comment" method="POST">
+          <input type="hidden" name="userid" value="<%=user.userid%>" />
+          <input type="hidden" name="kindofboard" value="<%=kindofboard%>" />
+          <input type="hidden" name="boardid" value="<%=boardid%>" />
+          <textarea class="comment__textarea" name="comment"></textarea>
+          <input type="submit" />
+        </form>
+      </div>
+      <%}%>
+
+      <!-- 하단 글목록 -->
+      <div class="board__name">
+        <a href="/board?mid=<%=kindofboard%>&page=1"><%=boardname%></a>
+      </div>
+      <div class="table__searchandwrite">
+        <div class="table__search">검색</div>
+        <div class="table__write">
+          <%if(user){%>
+          <a href="/boardwrite?mid=bulletin">쓰기</a>
+          <%}%>
+        </div>
+      </div>
+      <div class="boardContainer">
+        <table class="bulletintable">
+          <thead>
+            <tr>
+              <th class="title">제목</th>
+              <th class="author">글쓴이</th>
+              <th class="recommand">추천 수</th>
+              <th class="date">날짜</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%if(post.length != 0){%>
+              <%if(post.length < 16){%>
+                <%for(let i=0; i<post.length; i++){%>
+                  <tr>
+                    <td class="title_d">
+                      <a href="/board/bulletinboard/<%=post[i].id%>?page=<%=page%>">
+                        <%= post[i].title %>
+                      </a>
+                    </td>
+                    <td class="author_d"><%= post[i].userid %></td>
+                    <td class="recommand_d"><%= post[i].thumbsup %></td>
+                    <% let year = post[i].updatedAt.getFullYear() %>
+                    <% let month = 1 + post[i].updatedAt.getMonth() %>
+                    <% month = month >= 10 ? month : "0" + month %>
+                    <% let day = post[i].updatedAt.getDate() %>
+                    <% day = day >= 10 ? day : "0" + day %>
+                    <td class="date_d"><%= year + "." + month + "." + day;%></td>
+                  </tr>
+                <%}%>
+              <%}else{%>
+                <%for(let i=(page-1) * 15; i<15*page; i++){%>
+                  <% if(i == post.length){break;} %>
+                  <tr>
+                    <td class="title_d">
+                      <a href="/board/bulletinboard/<%=post[i].id%>?page=<%=page%>">
+                        <%= post[i].title %>
+                      </a>
+                    </td>
+                    <td class="author_d"><%= post[i].userid %></td>
+                    <td class="recommand_d"><%= post[i].thumbsup %></td>
+                    <% let year = post[i].updatedAt.getFullYear() %>
+                    <% let month = 1 + post[i].updatedAt.getMonth() %>
+                    <% month = month >= 10 ? month : "0" + month %>
+                    <% let day = post[i].updatedAt.getDate() %>
+                    <% day = day >= 10 ? day : "0" + day %>
+                    <td class="date_d"><%= year + "." + month + "." + day;%></td>
+                  </tr>
+                <%}%>
+              <%}%>
+            <%}%>
+          </tbody>
+        </table>
+        <div class="boardList">
+          <%if(post.length != 0){%>
+            <%if(post.length < 16){%>
+              <ul class="pageCount">
+                <li class="active">
+                  <a>1</a>
+                </li>
+              </ul>
+            <%}else{%>
+              <% let totalPage = Math.floor(post.length / 15) %>
+              <ul class="pageCount">
+                <% for(let i=0; i<=totalPage; i++){ %>
+                  <% if(i+1 == page){%>
+                    <li class="active">
+                      <a><%= i+1 %></a>
+                    </li>
+                  <%}else{%>
+                    <li class="notActive">
+                      <a href="/board?mid=bulletin&page=<%=i+1%>"><%= i+1 %></a>
+                    </li>
+                  <%}%>
+                <%}%>
+              </ul>
+            <%}%>
+          <%}%>
+          </div>
+      </div>
+    </section>
+    <footer id="footer">
+      <div class="copyright">Copyright (c) All Right Reserved.</div>
+    </footer>
+  </body>
+</html>
