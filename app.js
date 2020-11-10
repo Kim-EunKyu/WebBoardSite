@@ -9,22 +9,6 @@ const flash = require("connect-flash");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
 
-//-------------------------
-// const http = require("http");
-// const https = require("https");
-// const fs = require("fs");
-
-// var port1 = 80;
-// var port2 = 443;
-
-// const privateKey = fs.readFileSync("./private.pem");
-// const certificate = fs.readFileSync("./public.pem");
-// const options = {
-//   key: privateKey,
-//   cert: certificate,
-// };
-//-------------------------
-
 //env파일에서 환경변수 불러오기
 const dotenv = require("dotenv");
 dotenv.config();
@@ -80,16 +64,3 @@ app.use("/file", fileRouter);
 app.listen(port, () => {
   console.log(port, "번에서 서버 실행 중...");
 });
-
-// http.createServer(app).listen(port1, function () {
-//   console.log("Http server listening on port " + port1);
-// });
-
-// https.createServer(options, app).listen(port2, function () {
-//   console.log("Https server listening on port " + port2);
-// });
-
-// const httpsServer = https.createServer(options, app);
-// httpsServer.listen(port, function () {
-//   console.log("HTTPS server listening on port " + port);
-// });

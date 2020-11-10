@@ -8,29 +8,47 @@ let { Bulletin } = require("../models");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  let bulletin;
-  const bulletinpost = await Bulletin.findAll()
-    .then((result) => {
-      bulletin = _.cloneDeep(result);
-      // console.log("bulletin ::::" + bulletin + "\n\n");
-      console.log("JSON으로 ::::" + JSON.stringify(bulletin));
-    })
-    .catch((err) => {
-      console.log("에러 : ", err);
-    });
+  const bulletinpost = await Bulletin.findAll().catch((err) => {
+    console.log("에러 : ", err);
+  });
 
   res.render("index", {
     user: req.user,
-    post: bulletin.reverse(),
+    post: bulletinpost.reverse(),
   });
 
   console.log("현재 유저 정보 : \n", req.user);
 });
 
-router.get("/boardwrite", (req, res) => {
+router.get("/boardwrite", async (req, res) => {
   let board = req.query.mid;
   let mod = req.query.mod;
-  res.render("../views/boardwrite", { user: req.user, board: board, mod: mod });
+  let postid = req.query.postid;
+  let page = req.query.page;
+
+  if (mod) {
+    const bulletinpost = await Bulletin.findOne({
+      where: {
+        id: postid,
+      },
+    }).catch((err) => {
+      console.log("에러 : ", err);
+    });
+    res.render("../views/boardwrite", {
+      user: req.user,
+      board: board,
+      mod: mod,
+      postOne: bulletinpost,
+      postid: postid,
+      page: page,
+    });
+  } else {
+    res.render("../views/boardwrite", {
+      user: req.user,
+      board: board,
+      mod: mod,
+    });
+  }
 });
 
 router.get("/boarddelete", (req, res) => {

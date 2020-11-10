@@ -1,6 +1,8 @@
 //user와 관련한 라우팅을 하는 곳
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 const { User, Bulletin, Comment } = require("../models");
 
@@ -16,6 +18,7 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/createAccount", (req, res) => {
+  console.log(saltRounds);
   res.render("../views/createAccount.ejs", {
     user: req.user,
   });
@@ -28,9 +31,11 @@ router.post("/createUser", async (req, res) => {
     },
   });
   if (newUser !== undefined) {
-    User.create({
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(req.body.createPW, salt);
+    await User.create({
       userid: req.body.createID,
-      password: req.body.createPW,
+      password: hash,
     })
       .then((result) => {
         console.log("데이터 추가 완료");
@@ -39,12 +44,10 @@ router.post("/createUser", async (req, res) => {
       .catch((err) => {
         console.log("데이터 추가 실패");
         console.log(err);
-        return next(err);
       });
   } else {
     res.redirect("/user/createAccount");
   }
-  // const exUser = await User.findOne({ where: { userid } });
 });
 
 router.post("/board", (req, res) => {
@@ -70,6 +73,24 @@ router.post("/board", (req, res) => {
 });
 
 router.post("/boardupdate", (req, res) => {
+  const kindofboard = req.body.board;
+  const postAuthor = req.body.userid;
+  const postTitle = req.body.title;
+  const postContent = req.body.editor1;
+  const postId = req.body.postid;
+  const page = req.body.page;
+  Bulletin.update(
+    { contents: postContent },
+    {
+      where: {
+        id: postId,
+      },
+    }
+  );
+  const path = `/board/${kindofboard}/${postId}?page=${page}`;
+  console.log(path);
+  res.redirect(`/board/${kindofboard}board/${postId}?page=${page}`);
+
   console.log("업데이트");
 });
 

@@ -36,8 +36,10 @@
         <div class="post__author">
           <div class="author__left"><%=postOne.userid%></div>
           <%if(user && user.userid === postOne.userid){%>
-            <a href="/boardwrite?mid=<%=kindofboard%>&mod=1" class="author__right">수정</a>
-            <a href="/boarddelete?kindofboard=<%=kindofboard%>&postid=<%=post.id%>" class="author__right">삭제</a>
+            <div>
+              <a href="/boardwrite?mid=<%=kindofboard%>&postid=<%=postOne.id%>&mod=1&page=<%=page%>" class="author__right">수정</a>
+              <a href="/boarddelete?kindofboard=<%=kindofboard%>&postid=<%=post.id%>" class="author__right">삭제</a>
+            </div>
           <%}%>
         </div>
         <div class="post__content">

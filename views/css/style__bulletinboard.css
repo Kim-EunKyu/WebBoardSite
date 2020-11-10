@@ -76,6 +76,14 @@ a {
   white-space: nowrap;
 }
 
+.bulletintable tbody tr:hover {
+  background-color: rgb(233, 233, 233);
+}
+
+.bulletintable tbody tr td a {
+  display: block;
+}
+
 .boardList {
   display: flex;
   justify-content: center;
