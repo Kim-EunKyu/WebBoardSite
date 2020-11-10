@@ -103,21 +103,24 @@ router.post("/updateBoard", (req, res) => {
 });
 
 //댓글 추가 수행
-router.post("/comment", (req, res) => {
-  Comment.create({
-    userid: req.body.userid,
-    contents: req.body.comment,
-    boardname: req.body.kindofboard,
-    boardid: req.body.boardid,
-  })
-    .then((result) => {
-      console.log("데이터 추가 완료");
-      res.redirect("/");
-    })
-    .catch((err) => {
+router.post("/comment", async (req, res) => {
+  const kindofboard = req.body.kindofboard;
+  const postId = req.body.boardid;
+  const page = req.body.page;
+  if (req.body.comment === "") {
+    window.history.back();
+  } else {
+    await Comment.create({
+      userid: req.body.userid,
+      contents: req.body.comment,
+      boardname: req.body.kindofboard,
+      boardid: req.body.boardid,
+    }).catch((err) => {
       console.log("데이터 추가 실패");
       console.log(err);
     });
+  }
+  res.redirect(`/board/${kindofboard}board/${postId}?page=${page}`);
 });
 
 //특정 게시판 글 보여주는 곳

@@ -19,10 +19,15 @@
       type="text/css"
     />
     <link rel="stylesheet" href="/css/style__navbar.css" type="text/css" />
-    
+  
     <title>WebBoard</title>
   </head>
   <body>
+    <!-- 상단으로 가는 버튼 -->
+    <button id="top">
+      <i class="fas fa-chevron-up"></i>
+    </button>
+    
     <%- include ("./layout/navbar") %>
     <!-- 본문 내용 -->
     <section id="home">
@@ -51,16 +56,20 @@
         </div>
       </div>
        <div class="comments">
-         <div class="comments__number"><%=comments.length%>개의 댓글</div>
+        <div class="comments__number">
+          <i class="fas fa-comments"></i> <%=comments.length%>개의 댓글
+        </div>
         <%if(comments){%> 
           <%for(let i = 0; i<comments.length; i++){%>
             <div class="comment__head">
               <div class="userid"><%=comments[i].userid%></div>
               <div class="date"></div>
             </div>
-            <div class="comment__body"><%=comments[i].contents%></div>
+            <div class="comment__body">
+              <%=comments[i].contents%>
+            </div>
           <%}%>
-          <%}%> 
+        <%}%>
        </div>
       <%if(user){%>
       <div class="comment__write">
@@ -68,12 +77,12 @@
           <input type="hidden" name="userid" value="<%=user.userid%>" />
           <input type="hidden" name="kindofboard" value="<%=kindofboard%>" />
           <input type="hidden" name="boardid" value="<%=boardid%>" />
+          <input type="hidden" name="page" value="<%=page%>" />
           <textarea class="comment__textarea" name="comment"></textarea>
-          <input type="submit" />
+          <input id="comment__register" type="submit" value="등록"/>
         </form>
       </div>
       <%}%>
-
       <!-- 하단 글목록 -->
       <div class="board__name">
         <a href="/board?mid=<%=kindofboard%>&page=1"><%=boardname%></a>
@@ -170,5 +179,8 @@
     <footer id="footer">
       <div class="copyright">Copyright (c) All Right Reserved.</div>
     </footer>
+    <%if(user){%>
+    <script type="text/javascript" src="/js/BoardContentsFn.js"></script>
+    <%}%>
   </body>
 </html>

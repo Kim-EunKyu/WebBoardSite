@@ -4,6 +4,7 @@ const passport = require("passport");
 
 const router = express.Router();
 
+//passport를 통해서 로그인 인증
 router.post(
   "/logincheck",
   passport.authenticate("local", {

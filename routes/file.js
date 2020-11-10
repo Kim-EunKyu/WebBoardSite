@@ -1,14 +1,13 @@
 //파일업로드 라우팅 하는 곳
 const express = require("express");
-
+const router = express.Router();
 const multipart = require("connect-multiparty");
 const multipartMiddleware = multipart();
 const fs = require("fs");
 const path = require("path");
 const { uuid } = require("uuidv4");
 
-const router = express.Router();
-
+//파일 업로드
 router.post("/upload", multipartMiddleware, (req, res) => {
   const orifilepath = req.files.upload.path;
   const orifilename = req.files.upload.name;

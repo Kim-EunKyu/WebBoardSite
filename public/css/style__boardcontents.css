@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background-color: lightgray;
@@ -9,6 +13,24 @@ ul {
 
 a {
   text-decoration: none;
+  color: black;
+}
+
+#top {
+  position: fixed;
+  padding: 10px 20px;
+  background-color: white;
+  opacity: 40%;
+  bottom: 20px;
+  right: 20px;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#top:hover {
+  background-color: gray;
 }
 
 #home {
@@ -55,13 +77,10 @@ a {
 }
 
 .post__content img {
+  display: block;
+  max-width: 960px;
   width: 100% !important;
   height: 100% !important;
-}
-
-.comments__number {
-  font-size: 18px;
-  margin-bottom: 12px;
 }
 
 .post__thumbs {
@@ -77,6 +96,15 @@ a {
   border: none;
   border-radius: 20px;
   cursor: pointer;
+}
+
+.comments {
+  margin-top: 60px;
+}
+
+.comments__number {
+  font-size: 18px;
+  margin-bottom: 12px;
 }
 
 .comment__head {
@@ -95,7 +123,24 @@ a {
 
 .comment__textarea {
   width: 100%;
-  resize: vertical;
+  height: 58px;
+  resize: none;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  transition: all 300ms ease-in;
+}
+
+.comment__textarea:focus {
+  border: 1px solid #3493ff;
+  outline: none;
+}
+
+#comment__register {
+  padding: 5px 15px;
+  color: white;
+  background-color: #3493ff;
+  border: none;
+  border-radius: 20px;
 }
 
 /* 하단 글목록 */
