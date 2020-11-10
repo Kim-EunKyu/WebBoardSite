@@ -32,6 +32,10 @@ a {
   padding: 0;
 }
 
+.board__content::after {
+  border: 1px solid gray;
+}
+
 .post__title {
   font-size: 22px;
   font-weight: bold;
@@ -58,6 +62,21 @@ a {
 .comments__number {
   font-size: 18px;
   margin-bottom: 12px;
+}
+
+.post__thumbs {
+  text-align: center;
+}
+
+.thumbsup,
+.thumbsdown {
+  padding: 8px 16px;
+  margin: 0 8px;
+  color: white;
+  background-color: #3493ff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 .comment__head {
@@ -130,6 +149,14 @@ a {
 
 .bulletintable tbody .date_d {
   white-space: nowrap;
+}
+
+.bulletintable tbody tr:hover {
+  background-color: rgb(233, 233, 233);
+}
+
+.bulletintable tbody tr td a {
+  display: block;
 }
 
 .boardList {

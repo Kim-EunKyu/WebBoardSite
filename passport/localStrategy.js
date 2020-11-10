@@ -1,6 +1,5 @@
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
-const saltRounds = 10;
 const { User } = require("../models");
 
 module.exports = (passport) => {
@@ -12,14 +11,10 @@ module.exports = (passport) => {
         session: true,
       },
       async (userid, password, done) => {
-        console.log("LocalStrategy", userid, password);
         try {
-          console.log(userid, password);
           const exUser = await User.findOne({ where: { userid } });
           if (exUser) {
             const result = bcrypt.compareSync(password, exUser.password);
-            console.log(exUser.password, hash);
-            console.log("result 값 : ", result);
             if (result) {
               done(null, exUser);
             } else {

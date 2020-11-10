@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   background-color: lightgray;
@@ -14,6 +18,7 @@ a {
 #home {
   max-width: 960px;
   margin: auto;
+  text-align: center;
 }
 
 .login__form {
@@ -24,6 +29,7 @@ a {
 .login__form fieldset {
   margin-top: 50px;
   display: flex;
+  flex-direction: column;
   background-color: white;
   width: 20%;
 }
@@ -31,10 +37,19 @@ a {
 .login__id,
 .login__pw {
   padding: 8px;
+  margin: 2px 0;
 }
 
 .login__submit {
+  all: unset;
   width: 100%;
+  padding: 6px 0;
+  margin-top: 12px;
+  text-align: center;
+  border-radius: 20px;
+  background-color: #388aff;
+  color: white;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1050px) {

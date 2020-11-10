@@ -1,4 +1,4 @@
-//일반적인 페이지 라우팅 하는 곳
+//파일업로드 라우팅 하는 곳
 const express = require("express");
 
 const multipart = require("connect-multiparty");

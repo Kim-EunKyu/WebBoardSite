@@ -32,7 +32,7 @@
         <div class="table__search">검색</div>
         <div class="table__write">
           <%if(user){%>
-          <a href="/boardwrite?mid=bulletin">쓰기</a>
+          <a href="/boardwrite?mid=bulletin&page=1">쓰기</a>
           <%}%>
         </div>
       </div>
@@ -98,7 +98,8 @@
                 </li>
               </ul>
             <%}else{%>
-              <% let totalPage = Math.floor(post.length / 15) %>
+              <% let totalPage = Math.floor(post.length / 15); %>
+              <% if(post.length % 15 === 0) totalPage--;%>
               <ul class="pageCount">
                 <% for(let i=0; i<=totalPage; i++){ %>
                   <% if(i+1 == page){%>

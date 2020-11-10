@@ -29,7 +29,7 @@
       <div class="board__title">자유 게시판</div>
       <!-- 글 수정할때 -->
       <%if(mod){%>
-      <form action="/user/boardupdate" method="POST">
+      <form action="/board/updateBoard" method="POST">
         <input type="hidden" name="userid" value="<%=user.userid %>" />
         <input type="hidden" name="board" value="<%=board%>" />
         <input type="hidden" name="postid" value="<%=postid%>" />
@@ -37,9 +37,10 @@
         <input type="text" name="title" class="board__inputtitle" value="<%=postOne.title%>"/>
         <textarea name="editor1" id="editor1" rows="10" cols="80" ><%=postOne.contents%></textarea>
       <%}else{%> 
-      <form action="/user/board" method="POST">
+      <form action="/board/createBoard" method="POST">
         <input type="hidden" name="userid" value="<%=user.userid %>" />
         <input type="hidden" name="board" value="<%=board%>" />
+        <input type="hidden" name="page" value="<%=page%>" />
         <input type="text" name="title" class="board__inputtitle" />
         <textarea name="editor1" id="editor1" rows="10" cols="80" ></textarea>
       <%}%>

@@ -2,12 +2,12 @@
 
 ## Languages and Frameworks Used:
 
-- [Mysql](https://www.mysql.com//)
+- [Mysql](https://www.mysql.com/)
 - [Express](https://expressjs.com/)
 - [Node.js](https://nodejs.org/en/)
-- [Sequelize.js](https://sequelize.org//)
+- [Sequelize.js](https://sequelize.org/)
 - [Passport / Bcrypt](https://www.npmjs.com/package/passport)
-- [GitHub](https://github.com/) / [AWS](https://aws.amazon.com//)
+- [GitHub](https://github.com/) / [AWS](https://aws.amazon.com/)
 
 ## What is this?
 

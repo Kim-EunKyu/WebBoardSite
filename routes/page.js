@@ -47,6 +47,7 @@ router.get("/boardwrite", async (req, res) => {
       user: req.user,
       board: board,
       mod: mod,
+      page: page,
     });
   }
 });
@@ -54,7 +55,6 @@ router.get("/boardwrite", async (req, res) => {
 router.get("/boarddelete", (req, res) => {
   let kindofboard = req.query.kindofboard;
   let postid = req.query.postid;
-  console.log(kindofboard, "!!!!!test!!!!!", postid);
   res.render("../views/boarddelete", {
     user: req.user,
     kindofboard: kindofboard,

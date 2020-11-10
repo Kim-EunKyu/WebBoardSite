@@ -6,17 +6,20 @@ const saltRounds = 10;
 
 const { User, Bulletin, Comment } = require("../models");
 
+//로그인 화면 라우팅
 router.get("/login", (req, res) => {
   res.render("../views/login.ejs", {
     user: req.user,
   });
 });
 
+//passport를 통해 로그아웃 수행
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
 
+//회원가입 화면 라우팅
 router.get("/createAccount", (req, res) => {
   console.log(saltRounds);
   res.render("../views/createAccount.ejs", {
@@ -24,6 +27,7 @@ router.get("/createAccount", (req, res) => {
   });
 });
 
+//기존회원 목록에 없으면 회원가입을 수행
 router.post("/createUser", async (req, res) => {
   const newUser = await User.findOne({
     where: {
@@ -48,71 +52,6 @@ router.post("/createUser", async (req, res) => {
   } else {
     res.redirect("/user/createAccount");
   }
-});
-
-router.post("/board", (req, res) => {
-  console.log("userid: ", req.body.userid);
-  console.log("title: ", req.body.title);
-  console.log("contents: ", req.body.editor1);
-  Bulletin.create({
-    userid: req.body.userid,
-    title: req.body.title,
-    contents: req.body.editor1,
-    thumbsup: 0,
-    thumbsdown: 0,
-  })
-    .then((result) => {
-      console.log("데이터 추가 완료");
-      res.redirect("/");
-    })
-    .catch((err) => {
-      console.log("데이터 추가 실패");
-      console.log(err);
-      return next(err);
-    });
-});
-
-router.post("/boardupdate", (req, res) => {
-  const kindofboard = req.body.board;
-  const postAuthor = req.body.userid;
-  const postTitle = req.body.title;
-  const postContent = req.body.editor1;
-  const postId = req.body.postid;
-  const page = req.body.page;
-  Bulletin.update(
-    { contents: postContent },
-    {
-      where: {
-        id: postId,
-      },
-    }
-  );
-  const path = `/board/${kindofboard}/${postId}?page=${page}`;
-  console.log(path);
-  res.redirect(`/board/${kindofboard}board/${postId}?page=${page}`);
-
-  console.log("업데이트");
-});
-
-router.post("/comment", (req, res) => {
-  console.log("boardid: ", req.body.boardid);
-  console.log("kindofboard: ", req.body.kindofboard);
-  console.log("userid: ", req.body.userid);
-  Comment.create({
-    userid: req.body.userid,
-    contents: req.body.comment,
-    boardname: req.body.kindofboard,
-    boardid: req.body.boardid,
-  })
-    .then((result) => {
-      console.log("데이터 추가 완료");
-      res.redirect("/");
-    })
-    .catch((err) => {
-      console.log("데이터 추가 실패");
-      console.log(err);
-      return next(err);
-    });
 });
 
 module.exports = router;

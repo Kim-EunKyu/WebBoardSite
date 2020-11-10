@@ -4,10 +4,10 @@ const ejs = require("ejs");
 const app = express();
 const path = require("path");
 const session = require("express-session");
-const port = 3000;
 const flash = require("connect-flash");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
+const port = 3000;
 
 //env파일에서 환경변수 불러오기
 const dotenv = require("dotenv");
@@ -49,9 +49,8 @@ sequelize.sync();
 passportConfig(passport);
 
 app.set("view engine", "ejs");
-//app.set("views", "./views");
-app.use(express.static(path.join(__dirname + "/views")));
-// app.use(express.static(path.join(__dirname + "/node_modules")));
+app.set("views", "./views");
+app.use(express.static(path.join(__dirname + "/public")));
 
 app.use(express.urlencoded({ extended: false }));
 
