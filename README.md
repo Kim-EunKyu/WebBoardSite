@@ -7,7 +7,7 @@
 - [Node.js](https://nodejs.org/en/)
 - [Sequelize.js](https://sequelize.org/)
 - [Passport / Bcrypt](https://www.npmjs.com/package/passport)
-- [GitHub](https://github.com/) / [AWS](https://aws.amazon.com/)
+- [GitHub](https://github.com/)
 
 ## What is this?
 
@@ -15,7 +15,7 @@
 
 ### 실제 서비스 주소
 
-- http://www.cbsky1234.com
+- https://webboardsite.herokuapp.com/
 
 ### 주요기능
 
